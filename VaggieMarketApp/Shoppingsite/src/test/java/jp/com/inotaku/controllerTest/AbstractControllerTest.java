@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class AbstractControllerTest {
 
 	@Test
-	public void a(){
+	public void aa(){
 		
 	}
 }
