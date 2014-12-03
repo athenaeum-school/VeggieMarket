@@ -17,8 +17,7 @@ module.exports = (grunt) ->
 				]
 			jade:
 				tasks: 'jade'
-				files: 
-					'src/**/*.jade'
+				files: 'src/**/*.jade'
 			sass:
 				tasks: 'compass'
 				files: 'src/sass/*.sass'
@@ -72,8 +71,8 @@ module.exports = (grunt) ->
 				expand: true
 				cwd: 'src/'
 				src:[
-					'jade/*.jade'
-					'test/*.jade'
+					'main/**/*.jade'
+					'test/**/*.jade'
 					'!**/_*.jade'
 				]
 				dest: 'dest/'
