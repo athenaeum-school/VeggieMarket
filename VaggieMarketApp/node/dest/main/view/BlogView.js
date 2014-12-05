@@ -16,7 +16,7 @@ BlogView = (function(_super) {
   BlogView.prototype.template = _.template($('#blogtemplate').html());
 
   BlogView.prototype.render = function() {
-    this.$el.html(this.template);
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   };
 

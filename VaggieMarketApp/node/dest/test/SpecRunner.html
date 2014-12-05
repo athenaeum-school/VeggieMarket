@@ -9,7 +9,12 @@
     <script src="../../bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
     <script src="../../bower_components/jasmine/lib/jasmine-core/boot.js"></script>
     <script id="blogtemplate" type="text/template">
-      <div class="view"></div>
+      <div class="view">
+        <ul>
+          <li><%= title %></li>
+          <li><%= message %></li>
+        </ul>
+      </div>
     </script>
     <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="../../bower_components/underscore/underscore.js"></script>
@@ -19,10 +24,12 @@
     <script type="text/javascript" src="../main/model/Blog.js"></script>
     <script type="text/javascript" src="../main/collection/BlogCollection.js"></script>
     <script type="text/javascript" src="../main/view/BlogView.js"></script>
+    <script type="text/javascript" src="../main/view/BlogListView.js"></script>
     <!-- include spec files here...-->
     <script type="text/javascript" src="model/BlogSpec.js"></script>
     <script type="text/javascript" src="collection/BlogCollectionSpec.js"></script>
     <script type="text/javascript" src="view/BlogViewSpec.js"></script>
+    <script type="text/javascript" src="view/BlogListViewSpec.js"></script>
   </head>
   <body></body>
 </html>

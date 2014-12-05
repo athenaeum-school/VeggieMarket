@@ -4,5 +4,5 @@ class BlogView extends Backbone.View
 	template: _.template($('#blogtemplate').html())
 
 	render: ->
-		@$el.html @template 
+		@$el.html @template @model.toJSON()
 		@
