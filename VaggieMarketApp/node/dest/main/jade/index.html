@@ -3,9 +3,19 @@
   <head>
     <meta charset="NaN">
     <title>VaggieMarketブログ</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
   </head>
   <body>
+    <section id="blogApp">
+      <form id="addBlog" action="#">
+        <input id="title" type="text">
+        <textarea id="message" rows="4" cols="40"></textarea>
+        <button id="add">追加</button>
+      </form>
+      <seciton id="main">
+        <div id="blogList"></div>
+      </seciton>
+    </section>
     <script id="blogtemplate" type="text/template">
       <div class="view">
         <ul>

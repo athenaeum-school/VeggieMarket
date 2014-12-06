@@ -1,3 +1,3 @@
-css_dir = "dest/css"
-sass_dir = "src/sass"
+css_dir = "dest/main/css"
+sass_dir = "src/main/sass"
 line_comments = false

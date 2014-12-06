@@ -20,7 +20,7 @@ module.exports = (grunt) ->
 				files: 'src/**/*.jade'
 			sass:
 				tasks: 'compass'
-				files: 'src/sass/*.sass'
+				files: 'src/**/*.sass'
 			css:
 				tasks: ''
 				files: 'dest/css/*.css'
