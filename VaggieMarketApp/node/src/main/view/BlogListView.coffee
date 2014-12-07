@@ -7,6 +7,8 @@ class BlogListView extends Backbone.View
 		@$title = @$ '#title'
 		@$message = @$ '#message'
 		@collection = new BlogCollection()
+		@collection.fetch
+			reset: true
 		@render()
 		@listenTo @collection, 'add', @renderBlog
 
@@ -20,13 +22,13 @@ class BlogListView extends Backbone.View
 		blogView = new BlogView
 			model: item
 		$('#blogList').append blogView.render().el
-		@$title.val ''
-		@$message.val ''
 
 	addBlog: (e) ->
 		e.preventDefault()
 		if @$title.val() isnt '' and @$message.val() isnt ''
-			@collection.add @add()
+			@collection.create @add()
+		@$title.val ''
+		@$message.val ''
 			
 	add: ->
 		title: @$title.val()

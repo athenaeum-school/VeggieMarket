@@ -1,30 +1,25 @@
-describe('ブログコレクションテスト', function() {
+describe('BlogListViewテスト', function() {
   beforeEach(function() {
-    this.blogListView = new BlogListView();
-    this.blogs = [
-      {
-        title: 'タイトル1',
-        message: 'メッセージ1'
-      }, {
-        title: 'タイトル2',
-        message: 'メッセージ2'
-      }
-    ];
-    return this.blogListView.collection = new BlogCollection(this.blogs);
+    this.addBlogSpy = spyOn(BlogListView.prototype, 'addBlog').and.callThrough();
+    this.blog = new Blog();
+    this.blog.save({
+      title: 'タイトル仮',
+      message: 'メッセージ仮'
+    });
+    return this.blogListView = new BlogListView();
   });
   afterEach(function() {
 
     /*@blogListView.remove() */
-    return $('#blogList div').remove();
+    return this.blog.destroy();
   });
   it('elテスト', function() {
     return expect(this.blogListView.render()).toEqual(this.blogListView);
   });
   it('renderテスト', function() {
     this.blogListView.render();
-    console.log($('#blogList > div').length);
     expect($('#blogList div')).toHaveClass('view');
-    return expect($('#blogList li')).toContainText('タイトル2');
+    return expect($('#blogList li')).toContainText('タイトル仮');
   });
   it('renderBlogテスト', function() {
     var blogListView2, renderBlogSpy, renderSpy;
@@ -37,15 +32,13 @@ describe('ブログコレクションテスト', function() {
     return expect(renderBlogSpy.calls.count()).toBe(2);
   });
   return it('addBlogテスト', function() {
-    var addBlogSpy, blogListView3;
-    addBlogSpy = spyOn(BlogListView.prototype, 'addBlog').and.callThrough();
-    blogListView3 = new BlogListView();
     $('#add').trigger('click');
-    expect(addBlogSpy).toHaveBeenCalled();
+    expect(this.addBlogSpy).toHaveBeenCalled();
     $('#title').val('タイトル4');
     $('#message').val('メッセージ4');
     $('#add').trigger('click');
-    expect($('#blogList li')).toContainText('タイトル4');
-    return expect($('#blogList li')).toContainText('メッセージ4');
+    expect($('#blogList li')).not.toContainText('タイトル4');
+    expect($('#blogList li')).not.toContainText('メッセージ4');
+    return $('.delete').trigger('click');
   });
 });

@@ -1,26 +1,23 @@
-describe 'ブログコレクションテスト', ->
+describe 'BlogListViewテスト', ->
 	beforeEach ->
-		
+		@addBlogSpy = spyOn(BlogListView.prototype,'addBlog').and.callThrough()
+		@blog = new Blog()
+		@blog.save
+			title: 'タイトル仮'
+			message: 'メッセージ仮'
 		@blogListView = new BlogListView()
-		@blogs = [
-	  	{title: 'タイトル1', message: 'メッセージ1'}
-	  	{title: 'タイトル2', message: 'メッセージ2'}
-	  ]
-	  	
-		@blogListView.collection = new BlogCollection @blogs
-
+	  
 	afterEach ->
 		###@blogListView.remove()###
-		$('#blogList div').remove()
-		
+		@blog.destroy()
+
 	it 'elテスト', ->
 		expect(@blogListView.render()).toEqual @blogListView
 
 	it 'renderテスト', ->
 		@blogListView.render()
-		console.log $('#blogList > div').length
 		expect($ '#blogList div').toHaveClass 'view' 
-		expect($ '#blogList li').toContainText 'タイトル2' 
+		expect($ '#blogList li').toContainText 'タイトル仮' 
 
 	it 'renderBlogテスト', ->
 		renderSpy = spyOn(BlogListView.prototype,'render').and.callThrough()
@@ -32,12 +29,11 @@ describe 'ブログコレクションテスト', ->
 		expect(renderBlogSpy.calls.count()).toBe 2
 
 	it 'addBlogテスト', ->
-		addBlogSpy = spyOn(BlogListView.prototype,'addBlog').and.callThrough()
-		blogListView3 = new BlogListView()
 		$('#add').trigger 'click'
-		expect(addBlogSpy).toHaveBeenCalled()
+		expect(@addBlogSpy).toHaveBeenCalled()
 		$('#title').val 'タイトル4'
 		$('#message').val 'メッセージ4'
 		$('#add').trigger 'click'
-		expect($ '#blogList li').toContainText 'タイトル4'
-		expect($ '#blogList li').toContainText 'メッセージ4'
+		expect($ '#blogList li').not.toContainText 'タイトル4'
+		expect($ '#blogList li').not.toContainText 'メッセージ4'
+		$('.delete').trigger 'click'

@@ -19,6 +19,9 @@ BlogListView = (function(_super) {
     this.$title = this.$('#title');
     this.$message = this.$('#message');
     this.collection = new BlogCollection();
+    this.collection.fetch({
+      reset: true
+    });
     this.render();
     return this.listenTo(this.collection, 'add', this.renderBlog);
   };
@@ -35,16 +38,16 @@ BlogListView = (function(_super) {
     blogView = new BlogView({
       model: item
     });
-    $('#blogList').append(blogView.render().el);
-    this.$title.val('');
-    return this.$message.val('');
+    return $('#blogList').append(blogView.render().el);
   };
 
   BlogListView.prototype.addBlog = function(e) {
     e.preventDefault();
     if (this.$title.val() !== '' && this.$message.val() !== '') {
-      return this.collection.add(this.add());
+      this.collection.create(this.add());
     }
+    this.$title.val('');
+    return this.$message.val('');
   };
 
   BlogListView.prototype.add = function() {

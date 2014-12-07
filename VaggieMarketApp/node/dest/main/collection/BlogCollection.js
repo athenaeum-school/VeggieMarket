@@ -11,6 +11,8 @@ BlogCollection = (function(_super) {
 
   BlogCollection.prototype.model = Blog;
 
+  BlogCollection.prototype.localStorage = new Backbone.LocalStorage('VaggieMarket');
+
   return BlogCollection;
 
 })(Backbone.Collection);

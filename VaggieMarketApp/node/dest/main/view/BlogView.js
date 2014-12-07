@@ -15,9 +15,47 @@ BlogView = (function(_super) {
 
   BlogView.prototype.template = _.template($('#blogtemplate').html());
 
+  BlogView.prototype.events = {
+    'click .delete': 'deleteBlog',
+    'dblclick .view': 'edit',
+    'click .editbutton': 'edit',
+    'click [name="save"]': 'saveBlog',
+    'click [name="cancel"]': 'close'
+  };
+
+  BlogView.prototype.initialize = function() {
+    this.listenTo(this.model, 'destroy', this.remove);
+    return this.listenTo(this.model, 'change', this.render);
+  };
+
   BlogView.prototype.render = function() {
     this.$el.html(this.template(this.model.toJSON()));
+    this.$title = this.$('[name="title"]');
+    this.$message = this.$('[name="message"]');
     return this;
+  };
+
+  BlogView.prototype.deleteBlog = function(e) {
+    e.preventDefault();
+    return this.model.destroy();
+  };
+
+  BlogView.prototype.edit = function() {
+    this.$el.addClass('editing');
+    return this.$title.focus();
+  };
+
+  BlogView.prototype.saveBlog = function(e) {
+    e.preventDefault();
+    this.model.save({
+      title: this.$title.val(),
+      message: this.$message.val()
+    });
+    return this.close();
+  };
+
+  BlogView.prototype.close = function() {
+    return this.$el.removeClass('editing');
   };
 
   return BlogView;

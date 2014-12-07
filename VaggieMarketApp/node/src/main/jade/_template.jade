@@ -3,3 +3,9 @@ script#blogtemplate(type="text/template")
 		ul
 			li<%= title %>
 			li<%= message %>
+		button.editbutton 編集
+		button.delete 削除
+	input.edit(name="title",value!="<%= title %>")
+	input.edit(name="message",value!="<%= message %>")
+	button.edit(name="save") 編集を終了
+	button.edit(name="cancel") キャンセル

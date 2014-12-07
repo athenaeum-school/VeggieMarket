@@ -9,10 +9,14 @@ Blog = (function(_super) {
     return Blog.__super__.constructor.apply(this, arguments);
   }
 
+  Blog.prototype.idAttribute = 'id';
+
   Blog.prototype.defaults = {
     title: '',
     message: 'なし'
   };
+
+  Blog.prototype.localStorage = new Backbone.LocalStorage('VaggieMarket');
 
   return Blog;
 
