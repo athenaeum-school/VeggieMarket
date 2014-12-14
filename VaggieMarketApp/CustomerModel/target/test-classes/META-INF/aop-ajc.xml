@@ -1,9 +1,0 @@
-<aspectj>
-<aspects>
-<aspect name="jp.com.inotaku.domain.CustomerAttributeIntegrationTest_Roo_IntegrationTest"/>
-<aspect name="jp.com.inotaku.domain.CustomerAttributeDataOnDemand_Roo_DataOnDemand"/>
-<aspect name="jp.com.inotaku.domain.CustomerAttributeIntegrationTest_Roo_Configurable"/>
-<aspect name="jp.com.inotaku.domain.CustomerAttributeDataOnDemand_Roo_Configurable"/>
-</aspects>
-</aspectj>
-
