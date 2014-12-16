@@ -1,4 +1,4 @@
-var Blog, BlogModel, allowCrossDomain, amqp, app, application_root, express, mongoose, path, port;
+var Blog, BlogModel, allowCrossDomain, amqp, app, application_root, express, mongoose, path, port, when1;
 
 application_root = __dirname;
 
@@ -12,7 +12,7 @@ app = express();
 
 amqp = require('amqplib');
 
-this.when = require('when');
+when1 = require('when');
 
 allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -73,6 +73,23 @@ app.post('/api/blogs', function(request, response) {
     title: request.body.title,
     message: request.body.message
   });
+  amqp.connect('amqp://localhost').then(function(conn) {
+    return when1(conn.createChannel().then(function(ch) {
+      var msg, ok, q;
+      q = 'blog';
+      msg = JSON.stringify(blog);
+      ok = ch.assertQueue(q, {
+        durable: false
+      });
+      return ok.then(function(_qok) {
+        ch.sendToQueue(q, new Buffer(msg));
+        console.log(" [x] Sent '%s'", msg);
+        return ch.close();
+      });
+    })).ensure(function() {
+      return conn.close();
+    });
+  }).then(null, console.warn);
   blog.save(function(err) {
     if (!err) {
       return console.log('追加されました。');
@@ -81,6 +98,22 @@ app.post('/api/blogs', function(request, response) {
     }
   });
   return response.send(blog);
+});
+
+app.put('/api/blogs/:id', function(request, response) {
+  console.log('更新します。: ' + request.body.title);
+  return BlogModel.findById(request.params.id, function(err, blog) {
+    blog.title = request.body.title;
+    blog.message = request.body.message;
+    return blog.save(function(err) {
+      if (!err) {
+        console.log('更新されました。');
+      } else {
+        console.log(err);
+      }
+      return response.send(blog);
+    });
+  });
 });
 
 app["delete"]('/api/blogs/:id', function(request, response) {

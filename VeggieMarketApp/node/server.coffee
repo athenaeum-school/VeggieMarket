@@ -4,7 +4,7 @@ path = require 'path'
 mongoose = require 'mongoose'
 app = express()
 amqp = require 'amqplib'
-@when = require 'when'
+when1 = require 'when'
 
 allowCrossDomain = (req, res, next) ->
 	res.header 'Access-Control-Allow-Origin', '*'
@@ -53,12 +53,38 @@ app.post '/api/blogs', (request,response) ->
 	blog = new BlogModel
 		title: request.body.title
 		message: request.body.message
+	amqp.connect('amqp://localhost').then (conn) ->
+		when1 conn.createChannel().then (ch) ->
+			q = 'blog'
+			msg = JSON.stringify blog
+			ok = ch.assertQueue q, {durable: false}
+			ok.then (_qok) ->
+				ch.sendToQueue q,new Buffer msg
+				console.log " [x] Sent '%s'",msg
+				ch.close()
+		.ensure ->
+			conn.close()
+	.then null,console.warn
+
 	blog.save (err) ->
 		if not err
 			console.log '追加されました。'
 		else
 			console.log err
 	response.send blog
+
+
+app.put '/api/blogs/:id', (request,response) ->
+	console.log '更新します。: ' + request.body.title
+	BlogModel.findById request.params.id, (err,blog) ->
+		blog.title = request.body.title
+		blog.message = request.body.message
+		blog.save (err) ->
+			if not err
+				console.log '更新されました。'
+			else
+				console.log err
+			response.send blog
 
 app.delete '/api/blogs/:id', (request,response) ->
 	console.log "削除するブログのID: #{request.params.id}"
