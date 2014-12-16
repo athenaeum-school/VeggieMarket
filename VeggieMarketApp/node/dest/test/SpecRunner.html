@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Jasmine Spec Runner v2.0.0</title>
+    <link rel="shortcut icon" type="image/png" href="../../bower_components/jasmine/images/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="../../bower_components/jasmine/lib/jasmine-core/jasmine.css">
+    <script src="../../bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
+    <script src="../../bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="../../bower_components/jasmine/lib/jasmine-core/boot.js"></script>
+    <script id="blogtemplate" type="text/template">
+      <div class="view">
+        <ul>
+          <li><%= title %></li>
+          <li><%= message %></li>
+        </ul>
+        <button class="editbutton">編集</button>
+        <button class="delete">削除</button>
+      </div>
+      <input name="title" value="<%= title %>" class="edit">
+      <input name="message" value="<%= message %>" class="edit">
+      <button name="save" class="edit">編集を終了</button>
+      <button name="cancel" class="edit">キャンセル</button>
+    </script>
+    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="../../bower_components/backbone/backbone.js"></script>
+    <script type="text/javascript" src="../../bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+    <script src="../../bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script>
+    <!-- include source files here...-->
+    <script type="text/javascript" src="../main/model/Blog.js"></script>
+    <script type="text/javascript" src="../main/collection/BlogCollection.js"></script>
+    <script type="text/javascript" src="../main/view/BlogView.js"></script>
+    <script type="text/javascript" src="../main/view/BlogListView.js"></script>
+    <!-- include spec files here...-->
+    <script type="text/javascript" src="model/BlogSpec.js"></script>
+    <script type="text/javascript" src="collection/BlogCollectionSpec.js"></script>
+    <script type="text/javascript" src="view/BlogViewSpec.js"></script>
+    <script type="text/javascript" src="view/BlogListViewSpec.js"></script>
+  </head>
+  <body>
+    <section id="blogApp">
+      <header id="header">
+        <form id="addBlog" action="#">
+          <div>
+            <input id="title" type="text">
+            <textarea id="message" rows="4" cols="40"></textarea>
+            <button id="add">追加</button>
+          </div>
+        </form>
+      </header>
+      <seciton id="main">
+        <div id="blogList"></div>
+      </seciton>
+    </section>
+  </body>
+</html>

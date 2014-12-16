@@ -1,5 +1,13 @@
 #
-#Wed Dec 10 21:08:03 JST 2014
+<<<<<<< HEAD
+<<<<<<< HEAD
+#Wed Nov 19 11:38:55 JST 2014
+=======
+#Wed Nov 26 17:17:39 JST 2014
+>>>>>>> Customer
+=======
+#Wed Nov 19 02:33:03 JST 2014
+>>>>>>> Shoppingsite
 org.eclipse.jdt.core.compiler.debug.localVariable=generate
 org.eclipse.jdt.core.compiler.compliance=1.7
 org.eclipse.jdt.core.compiler.codegen.unusedLocal=preserve
