@@ -26,9 +26,9 @@
 
 ###アーキテクチャ
 ---
-![アーキテクチャ](アーキテクチャ2.png)
+![アーキテクチャ](アーキテクチャ.png)
 ---
-![Integration](Integration図4.png)
+![Integration](Integration図.png)
 
 
 
