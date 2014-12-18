@@ -1,0 +1,2 @@
+$ ->
+	blogListView = new BlogListView()
