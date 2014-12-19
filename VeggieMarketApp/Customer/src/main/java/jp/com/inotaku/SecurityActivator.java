@@ -2,11 +2,12 @@ package jp.com.inotaku;
 
 import java.io.UnsupportedEncodingException;
 
-public class ServiceActivator {
+import jp.com.inotaku.domain.Blog;
 
-	public String outPrint(byte[] value) throws UnsupportedEncodingException{
-		String result = new String(value, "UTF-8");
-		System.out.println(result);
-		return result;
+public class SecurityActivator {
+
+	public Blog outPrint(Blog blog) throws UnsupportedEncodingException{
+		System.out.println("securityAcivatior: " + blog);
+		return blog;
 	}
 }

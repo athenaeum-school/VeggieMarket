@@ -15,14 +15,31 @@
 
 	<int:channel id="fromRabbit"></int:channel>
 
-	<int:channel id="outChannel">
-		<int:queue capacity="100" />
+	<int:channel id="json"></int:channel>
+
+	<int:channel id="securityOutChannel">
+		
 	</int:channel>
 
-	<int:service-activator input-channel="fromRabbit"
-		output-channel="outChannel" ref="serviceActivator" method="outPrint"></int:service-activator>
+	<int:json-to-object-transformer
+		input-channel="fromRabbit" output-channel="json" type="jp.com.inotaku.domain.Blog"></int:json-to-object-transformer>
 
-	<bean id="serviceActivator" class="jp.com.inotaku.ServiceActivator"></bean>
+	<int:enricher input-channel="securityOutChannel"
+		output-channel="outChannel" request-channel="customerchannel"></int:enricher>
+
+	<int:service-activator input-channel="json"
+		output-channel="securityOutChannel" ref="securityActivator" method="outPrint"></int:service-activator>
+
+	<bean id="securityActivator" class="jp.com.inotaku.SecurityActivator"></bean>
+	<bean id="customerActivator" class="jp.com.inotaku.CustomerActivator"></bean>
 	<rabbit:connection-factory id="connectionFactory"
 		host="localhost" />
+
+	<int:service-activator input-channel="customerchannel"
+		ref="customerActivator" method="customerEnricher"></int:service-activator>
+
+	<int:channel id="customerchannel"></int:channel>
+	<int:channel id="outChannel">
+	<int:queue capacity="100" />
+	</int:channel>
 </beans>

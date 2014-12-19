@@ -1,1 +1,1 @@
-include "js","Shoppingsite","Customer","CustomerModel","integration"
+include "Shoppingsite","Customer","CustomerModel","integration"
