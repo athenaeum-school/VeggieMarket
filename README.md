@@ -12,17 +12,29 @@
 * 単体・結合テストを使ったTDD/XP/Scrum
 * Mockito/JUnit4/MockMvc/dbunit + Stub + ContextConfiguration(DIのテストもあり)
 * 予定：Spring Batch/Taskの追加を予定
+* 現在：未実装
+* 予定：Spring Integration(nodeプロジェクトからRabbitmq経由で送られてきたメッセージを加工してBillingプロジェクトに送信）
+* 現在：Spring Integration(nodeプロジェクトからRabbitmq経由で送られてきたメッセージをコンソールに出力・加工しRabbitMQに送信)
 
-### jsプロジェクト（Node.js）
+
+### nodeプロジェクト（Node.js）
 * Backbone.js / jQuery / underscore
 * Node.js+RabbitMQのためのAMQPアダプター
 * 元々はBlog系のアプリとして設計・実装したが、フロントエンドとして再設計中
 * jasmineによる単体テストあります（まだTDDではないので今後に検討）
-* 予定：coffeescript+Sass+Jade+Gruntの追加を予定、技術面では練習作があるので付け加える
+* coffeescript+Sass+Jade+Grunt
 
 ### integrationプロジェクト
 * EAI/EIP サーバー
 * Spring Integrationサーバー
+
+### Billingプロジェクト
+* 予定：Spring Integration（Customerプロジェクトから送られてきたメッセージをRabbitma経由でShippingプロジェクトに送信）
+* 現在：未実装
+
+### Shippingプロジェクト
+* 予定:Spring Integration（CustomerプロジェクトからRabbitmq経由で送られてきたメッセージをコンソールに出力）
+* 現在：未実装
 
 ###アーキテクチャ
 ---
