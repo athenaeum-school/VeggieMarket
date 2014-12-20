@@ -23,7 +23,7 @@
 * 元々はBlog系のアプリとして設計・実装したが、フロントエンドとして再設計中
 * jasmineによる単体テストあります（まだTDDではないので今後に検討）
 * coffeescript+Sass+Jade+Grunt
-* * port番号:9100
+* port番号:9100
 
 ### integrationプロジェクト
 * EAI/EIP サーバー
