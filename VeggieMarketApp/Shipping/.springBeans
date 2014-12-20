@@ -7,6 +7,10 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
+<<<<<<< HEAD
+=======
+		<config>src/main/resources/integration-context.xml</config>
+>>>>>>> Customer
 	</configs>
 	<autoconfigs>
 		<config>java:jp.com.inotaku.ShippingApplication</config>
