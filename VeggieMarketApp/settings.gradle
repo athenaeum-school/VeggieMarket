@@ -1,6 +1,1 @@
-<<<<<<< HEAD
-include "security","js","Shoppingsite","Customer","CustomerModel","integration"
-
-=======
 include "Shoppingsite","Customer","CustomerModel","integration"
->>>>>>> Customer
