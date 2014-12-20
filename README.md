@@ -15,7 +15,7 @@
 * 現在：未実装
 * 予定：Spring Integration(nodeプロジェクトからRabbitmq経由で送られてきたメッセージを加工してBillingプロジェクトに送信）
 * 現在：Spring Integration(nodeプロジェクトからRabbitmq経由で送られてきたメッセージをコンソールに出力・加工しRabbitMQに送信)
-
+* port番号:8040
 
 ### nodeプロジェクト（Node.js）
 * Backbone.js / jQuery / underscore
@@ -23,6 +23,7 @@
 * 元々はBlog系のアプリとして設計・実装したが、フロントエンドとして再設計中
 * jasmineによる単体テストあります（まだTDDではないので今後に検討）
 * coffeescript+Sass+Jade+Grunt
+* * port番号:9100
 
 ### integrationプロジェクト
 * EAI/EIP サーバー
