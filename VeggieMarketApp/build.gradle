@@ -112,6 +112,6 @@ project(':Shoppingsite'){
 	}
 	test.dependsOn xlsCopy
 }
-project(':security'){
+project(':integration'){
 	dependencies{ compile project(':Customer') }
 }
