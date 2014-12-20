@@ -3,6 +3,7 @@ allprojects{
 	apply plugin: 'checkstyle'
 	apply plugin: 'findbugs'
 	apply plugin: 'jacoco'
+	apply plugin: 'jetty'
 	
 }
 buildscript {
@@ -41,7 +42,9 @@ subprojects{
 	apply plugin: 'application'
 	apply plugin: 'maven'
 	apply plugin: 'eclipse-wtp'
+	apply plugin: 'jetty'
 	mainClassName = "jp.com.inotaku.Sample"
+	httpPort = 8040 
 	tomcat{  httpPort = 8090  }
 
 	repositories { mavenCentral()   }

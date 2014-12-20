@@ -10,8 +10,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring/integration-context.xml");
-		PollableChannel outChannel = (PollableChannel)context.getBean("outChannel");
-		Message<?> message = (Message<?>)outChannel.receive(20000);
+		PollableChannel toRabbit = (PollableChannel)context.getBean("toRabbit");
+		Message<?> message = (Message<?>)toRabbit.receive(20000);
 		System.out.println(message);
 		((ConfigurableApplicationContext)context).close();
 	}
